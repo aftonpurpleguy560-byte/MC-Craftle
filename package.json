@@ -2,18 +2,12 @@
   "name": "mc-craftle-purpleguy",
   "version": "1.0.0",
   "description": "Minecraft Crafting Wordle Game",
-  "main": "script.js",
+  "main": "index.html",
   "scripts": {
     "start": "serve .",
-    "build": "postcss style.css -o style.css"
+    "build": "echo 'No build needed'"
   },
   "dependencies": {
     "serve": "^14.2.0"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.24",
-    "postcss-cli": "^10.1.0",
-    "tailwindcss": "^3.3.2"
   }
 }
