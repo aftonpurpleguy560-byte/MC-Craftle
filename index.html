@@ -1,4 +1,3 @@
-<body>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -6,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MC CRAFTLE</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Küçük bir güvenlik önlemi: Sayfa yüklenene kadar beyazlık olmasın */
+        body { background-color: black; color: white; }
+    </style>
 </head>
-<body class="black-bg"> <div id="game-container">
+<body>
+
+    <div id="game-container">
         <div class="lang-wrapper">
             <button id="lang-toggle" onclick="changeLanguage()">English</button>
         </div>
@@ -19,8 +24,12 @@
             <button id="start-btn">BAŞLA</button>
         </div>
 
-        <div id="crafting-grid">
-            </div>
+        <div id="result-container">
+            <div id="item-display" class="item-icon" style="display: none;"></div>
+            <p id="item-name-result"></p>
+        </div>
+
+        <div id="crafting-grid"></div>
 
         <footer class="footer">
             <p id="footer-text">Purpleguy © 2026 - tablet power</p>
@@ -28,6 +37,7 @@
     </div>
 
     <script src="translations.js"></script>
+    
     <script src="script.js"></script>
 
 </body>
