@@ -2,61 +2,43 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MC Craftle - Purpleguy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MC CRAFTLE</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Küçük bir güvenlik önlemi: Sayfa yüklenene kadar beyazlık olmasın */
+        body { background-color: black; color: white; }
+    </style>
 </head>
 <body>
+
     <div id="game-container">
-        <div id="login-screen" class="screen main-bg">
-            <div class="mc-logo">MC CRAFTLE</div>
-            <div class="gui-panel">
-                <input type="text" id="username-input" placeholder="İsmini Yaz...">
-                <button class="mc-btn" id="btn-login">OYUNA GİR</button>
-            </div>
-            <div class="signature">Purpleguy © 2026 - tablet power</div>
+        <div class="lang-wrapper">
+            <button id="lang-toggle" onclick="changeLanguage()">English</button>
         </div>
 
-        <div id="main-menu" class="screen main-bg" style="display:none;">
-            <h2 id="welcome-text">Hoş Geldin!</h2>
-            <div class="gui-panel">
-                <button class="mc-btn green" id="btn-start">OYUNA BAŞLA</button>
-                <button class="mc-btn" id="btn-archive">ARŞİV (<span id="archive-count">0</span>/20)</button>
-                <div class="score-tag">🪙 Puan: <span id="menu-score">0</span></div>
-            </div>
+        <h1 id="game-title">MC CRAFTLE</h1>
+
+        <div class="input-section">
+            <input type="text" id="search-input" placeholder="Eşya ismi..." autocomplete="off">
+            <button id="start-btn">BAŞLA</button>
         </div>
 
-        <div id="archive-screen" class="screen dark-bg" style="display:none;">
-            <div class="gui-panel wide">
-                <h3>EŞYA ARŞİVİ</h3>
-                <div id="archive-list"></div>
-                <button class="mc-btn" id="btn-back-archive">GERİ DÖN</button>
-            </div>
+        <div id="result-container">
+            <div id="item-display" class="item-icon" style="display: none;"></div>
+            <p id="item-name-result"></p>
         </div>
 
-        <div id="game-screen" class="screen dark-bg" style="display:none;">
-            <div class="hud">
-                <div class="hud-item" id="btn-home">🏠</div>
-                <div id="target-hint" class="hud-item">Hedef: ???</div>
-                <div class="hud-item">🪙 <span id="game-score">0</span></div>
-            </div>
-            
-            <div class="crafting-table-gui">
-                <div class="grid" id="craft-grid"></div>
-                <div class="mc-arrow">➔</div>
-                <div class="result-slot" id="res-slot"></div>
-            </div>
+        <div id="crafting-grid"></div>
 
-            <div class="inv-wrapper">
-                <div class="inv-grid" id="inv-grid"></div>
-            </div>
-
-            <div class="action-bar">
-                <button class="mc-btn green" id="check-btn">CRAFT ET</button>
-                <button class="mc-btn yellow" id="btn-hint">İPUCU (5 🪙)</button>
-            </div>
-        </div>
+        <footer class="footer">
+            <p id="footer-text">Purpleguy © 2026 - tablet power</p>
+        </footer>
     </div>
+
+    <script src="translations.js"></script>
+    
     <script src="script.js"></script>
+
 </body>
 </html>
