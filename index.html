@@ -14,9 +14,49 @@
                 <input type="text" id="username-input" placeholder="İsmini Yaz...">
                 <button class="mc-btn" id="btn-login">OYUNA GİR</button>
             </div>
+            <div class="signature">Purpleguy © 2026 - tablet power</div>
         </div>
+
+        <div id="main-menu" class="screen main-bg" style="display:none;">
+            <h2 id="welcome-text">Hoş Geldin!</h2>
+            <div class="gui-panel">
+                <button class="mc-btn green" id="btn-start">OYUNA BAŞLA</button>
+                <button class="mc-btn" id="btn-archive">ARŞİV (<span id="archive-count">0</span>/20)</button>
+                <div class="score-tag">🪙 Puan: <span id="menu-score">0</span></div>
+            </div>
         </div>
+
+        <div id="archive-screen" class="screen dark-bg" style="display:none;">
+            <div class="gui-panel wide">
+                <h3>EŞYA ARŞİVİ</h3>
+                <div id="archive-list"></div>
+                <button class="mc-btn" id="btn-back-archive">GERİ DÖN</button>
+            </div>
+        </div>
+
+        <div id="game-screen" class="screen dark-bg" style="display:none;">
+            <div class="hud">
+                <div class="hud-item" id="btn-home">🏠</div>
+                <div id="target-hint" class="hud-item">Hedef: ???</div>
+                <div class="hud-item">🪙 <span id="game-score">0</span></div>
+            </div>
+            
+            <div class="crafting-table-gui">
+                <div class="grid" id="craft-grid"></div>
+                <div class="mc-arrow">➔</div>
+                <div class="result-slot" id="res-slot"></div>
+            </div>
+
+            <div class="inv-wrapper">
+                <div class="inv-grid" id="inv-grid"></div>
+            </div>
+
+            <div class="action-bar">
+                <button class="mc-btn green" id="check-btn">CRAFT ET</button>
+                <button class="mc-btn yellow" id="btn-hint">İPUCU (5 🪙)</button>
+            </div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
-
