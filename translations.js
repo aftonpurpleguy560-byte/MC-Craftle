@@ -1,49 +1,48 @@
-// Varsayılan dil ayarı (Oyun ilk açıldığında ne olsun?)
+// Varsayılan dili belirle
 let currentLang = 'tr'; 
 
 const translations = {
     tr: {
-        // Genel Arayüz Metinleri
+        // Arayüz Metinleri
         title: "MC CRAFTLE",
         start: "BAŞLA",
         placeholder: "Eşya ismi girin...",
-        langBtn: "English", // Butona basınca geçilecek olan dilin adı
+        langBtn: "English", // Butonda görünecek yazı
         success: "Tebrikler! Doğru eşyayı buldun.",
         error: "Maalesef yanlış eşya, tekrar dene!",
         
-        // Eşya Listesi (Anahtar: Kod Adı, Değer: Oyuncunun göreceği isim)
-        // Buradaki değerlerin TAMAMEN Türkçe olduğundan emin ol.
+        // Eşya Listesi (Oyuncunun TR modunda yazması gerekenler)
         items: {
+            "diamond_sword": "Elmas Kılıç",
             "diamond": "Elmas",
             "stick": "Çubuk",
-            "diamond_sword": "Elmas Kılıç",
-            "crafting_table": "Çalışma Masası",
+            "apple": "Elma",
             "iron_ingot": "Demir Külçesi",
             "gold_ingot": "Altın Külçesi",
             "pickaxe": "Kazma",
-            "apple": "Elma"
+            "crafting_table": "Çalışma Masası"
         }
     },
     en: {
-        // Genel Arayüz Metinleri
+        // Arayüz Metinleri
         title: "MC CRAFTLE",
         start: "START",
         placeholder: "Enter item name...",
-        langBtn: "Türkçe", // Butona basınca geçilecek olan dilin adı
-        success: "Congratulations! You found the right item.",
+        langBtn: "Türkçe", // Butonda görünecek yazı
+        success: "Congratulations! You found it.",
         error: "Wrong item, try again!",
         
-        // Eşya Listesi
-        // Buradaki değerlerin TAMAMEN İngilizce olduğundan emin ol.
+        // Eşya Listesi (Oyuncunun EN modunda yazması gerekenler)
         items: {
+            "diamond_sword": "Diamond Sword",
             "diamond": "Diamond",
             "stick": "Stick",
-            "diamond_sword": "Diamond Sword",
-            "crafting_table": "Crafting Table",
+            "apple": "Apple",
             "iron_ingot": "Iron Ingot",
             "gold_ingot": "Gold Ingot",
             "pickaxe": "Pickaxe",
-            "apple": "Apple"
+            "crafting_table": "Crafting Table"
         }
     }
 };
+
