@@ -1,0 +1,14 @@
+/* Sprite Sistemi */
+.mc-item {
+    width: 32px;
+    height: 32px;
+    /* Kendi klasöründeki resmi kullanır */
+    background-image: url('assets/items.png'); 
+    background-size: 512px 512px;
+    image-rendering: pixelated;
+    transform: scale(1.5);
+    display: inline-block;
+}
+
+/* Önceki CSS'deki tüm slot ve buton tasarımlarını buraya ekle */
+
