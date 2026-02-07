@@ -1,51 +1,104 @@
-/* Ana tema ve arka plan ayarları */
+/* Genel Sayfa Ayarları */
 body {
-    background-color: #000000; /* İstediğin gibi arka plan siyah */
+    background-color: black; /* Arka plan her zaman siyah [cite: 2026-01-27] */
     color: white;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Courier New', Courier, monospace; /* Minecraft havası için */
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    margin: 0;
+    min-height: 100vh;
+    text-align: center;
 }
 
-/* Eşya kutucuklarının stili */
-.item-slot {
-    width: 64px;
-    height: 64px;
-    background-color: #8B8B8B;
-    border: 4px solid #373737;
-    margin: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* Resim artık doğrudan internet linkinden geliyor */
-    background-image: url('https://raw.githubusercontent.com/PrismarineJS/minecraft-assets/master/data/1.12/items.png');
-    background-repeat: no-repeat;
-    image-rendering: pixelated; /* Minecraft havası için pikseller net olsun */
+/* Konteynır Yapısı */
+#game-container {
+    width: 90%;
+    max-width: 500px;
+    padding: 20px;
 }
 
-/* Eşya koordinatları örnekleri */
-.diamond-sword { background-position: -352px -64px; }
-.iron-ingot { background-position: -128px -32px; }
-.stick { background-position: -160px -128px; }
-
-/* Buton ve giriş alanları */
-input, button {
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 5px;
-    border: none;
+/* Başlık */
+#game-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px #3f3f3f;
 }
 
-button {
-    background-color: #3e8e41;
+/* Dil Butonu */
+.lang-wrapper {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#lang-toggle {
+    background-color: #3c3c3c;
     color: white;
+    border: 2px solid white;
+    padding: 5px 15px;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #327335;
+/* Giriş Alanı */
+.input-section {
+    margin-bottom: 30px;
 }
+
+#search-input {
+    padding: 10px;
+    width: 200px;
+    border: 2px solid #3c3c3c;
+    background: #1e1e1e;
+    color: white;
+}
+
+#start-btn {
+    padding: 10px 20px;
+    background-color: #3c3c3c;
+    color: white;
+    border: 2px solid white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#start-btn:hover {
+    background-color: white;
+    color: black;
+}
+
+/* --- SPRITE SİHRİ BURADA --- */
+
+/* Eşya İkon Temeli */
+.item-icon {
+    width: 32px;
+    height: 32px;
+    background-image: url('items.png'); /* items.png dosyanın adıyla aynı olmalı */
+    background-repeat: no-repeat;
+    image-rendering: pixelated; /* Pikseller net görünsün */
+    margin: 20px auto;
+}
+
+/* Eşya Koordinatları (Her eşya 32px genişliğinde yan yana dizili varsayılmıştır) */
+/* Eğer resmin farklıysa bu -32px değerlerini arttırarak bulabilirsin */
+.sprite-diamond       { background-position: 0px 0px; }
+.sprite-stick         { background-position: -32px 0px; }
+.sprite-diamond_sword { background-position: -64px 0px; }
+.sprite-apple         { background-position: -96px 0px; }
+.sprite-iron_ingot    { background-position: -128px 0px; }
+
+/* Sonuç Metni */
+#item-name-result {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+/* Footer [cite: 2026-02-01] */
+.footer {
+    margin-top: 50px;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
