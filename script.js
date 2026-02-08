@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit } from "firebase/firestore";
 
-// Firebase Yapılandırman ✨
+// Firebase Config ✨
 const firebaseConfig = {
   apiKey: "AIzaSyBvkxrjBY2pVLNo6fmjGpinlXcPmy5Mc_A",
   authDomain: "mc-craftle.firebaseapp.com",
@@ -14,28 +14,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// 🏆 Rekor Kaydet
-async function saveScore(nickname, attempts) {
-    try {
-        await addDoc(collection(db, "leaderboard"), {
-            name: nickname,
-            score: attempts,
-            timestamp: new Date()
-        });
-        loadLeaderboard(); 
-    } catch (e) {
-        console.error("❌ Hata: ", e);
-    }
-}
-
-// 👑 Rekorları Listele
+// 🏆 Rekorları Getir
 async function loadLeaderboard() {
     const listElement = document.getElementById('scores-list');
     if (!listElement) return;
-
-    const q = query(collection(db, "leaderboard"), orderBy("score", "asc"), limit(10));
+    const q = query(collection(db, "leaderboard"), orderBy("score", "asc"), limit(5));
     const querySnapshot = await getDocs(q);
-    
     listElement.innerHTML = "";
     querySnapshot.forEach((doc) => {
         const data = doc.data();
@@ -45,37 +29,35 @@ async function loadLeaderboard() {
     });
 }
 
-// 🎮 Oyun Fonksiyonları
-window.changeLanguage = function() {
-    currentLang = currentLang === 'tr' ? 'en' : 'tr';
-    const data = translations[currentLang];
-    document.getElementById('game-title').innerText = data.title;
-    document.getElementById('search-input').placeholder = data.placeholder;
-    document.getElementById('start-btn').innerText = data.start;
-    document.getElementById('lang-toggle').innerText = data.langBtn;
-};
-
-window.checkGuess = function() {
+// 🕹️ Tahmin Kontrolü
+window.checkGuess = async function() {
     const inputField = document.getElementById('search-input');
     const userGuess = inputField.value.trim().toLowerCase();
-    const targetKey = "diamond_sword"; 
+    const targetKey = "iron_boots"; // Örnek hedef
     
-    // Emojiyi temizleyip kontrol etme 🧠
-    const correctName = translations[currentLang].items[targetKey].split(' ')[0].toLowerCase();
+    // Emojiyi ayır ve sadece ismi kontrol et
+    const itemData = translations[currentLang].items[targetKey];
+    const emoji = itemData.split(' ').pop();
+    const cleanName = itemData.replace(emoji, '').trim().toLowerCase();
 
-    if (userGuess.includes(correctName)) {
-        const displayDiv = document.getElementById('item-display');
-        displayDiv.style.display = "block";
-        displayDiv.className = `item-icon sprite-${targetKey}`;
-        document.getElementById('item-name-result').innerText = "🎉 " + translations[currentLang].success;
-        saveScore("Efe", 1); // 🥇 Rekor [cite: 2026-02-01]
+    if (userGuess === cleanName) {
+        document.getElementById('item-display').innerHTML = emoji;
+        document.getElementById('item-name-result').innerText = translations[currentLang].success;
+        
+        // Skor kaydet (Efe için) 🥇
+        await addDoc(collection(db, "leaderboard"), {
+            name: "Efe",
+            score: 1,
+            timestamp: new Date()
+        });
+        loadLeaderboard();
     } else {
-        document.getElementById('item-name-result').innerText = "❌ " + translations[currentLang].error;
+        document.getElementById('item-name-result').innerText = translations[currentLang].error;
     }
 };
 
-// 🌑 Başlangıç Ayarları
+// 🌑 Başlangıç
 document.addEventListener('DOMContentLoaded', () => {
-    document.body.style.backgroundColor = "black"; // [cite: 2026-01-27]
+    document.body.style.backgroundColor = "black"; [cite: 2026-01-27]
     loadLeaderboard();
 });
