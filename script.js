@@ -1,76 +1,92 @@
-// Sayfa ilk yüklendiğinde ve dil değiştiğinde UI'ı güncelleyen fonksiyon
+// 1. Firebase Modüllerini Import Et
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit } from "firebase/firestore";
+
+// 2. Senin Firebase Config Verilerin
+const firebaseConfig = {
+  apiKey: "AIzaSyBvkxrjBY2pVLNo6fmjGpinlXcPmy5Mc_A",
+  authDomain: "mc-craftle.firebaseapp.com",
+  projectId: "mc-craftle",
+  storageBucket: "mc-craftle.firebasestorage.app",
+  messagingSenderId: "593377101435",
+  appId: "1:593377101435:web:053380c4b753b11fea44de"
+};
+
+// 3. Firebase'i Başlat
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// --- DÜNYA REKORU SİSTEMİ ---
+
+// Rekor Kaydetme (Örn: Efe 5 denemede bildi)
+async function saveScore(nickname, attempts) {
+    try {
+        await addDoc(collection(db, "leaderboard"), {
+            name: nickname,
+            score: attempts, // Ne kadar az deneme, o kadar iyi!
+            timestamp: new Date()
+        });
+        loadLeaderboard(); // Listeyi tazele
+    } catch (e) {
+        console.error("Rekor kaydedilemedi: ", e);
+    }
+}
+
+// Rekorları Çekme (İlk 10 Kişi)
+async function loadLeaderboard() {
+    const listElement = document.getElementById('scores-list');
+    if (!listElement) return;
+
+    const q = query(collection(db, "leaderboard"), orderBy("score", "asc"), limit(10));
+    const querySnapshot = await getDocs(q);
+    
+    listElement.innerHTML = "";
+    querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const li = document.createElement('li');
+        li.textContent = `${data.name}: ${data.score} Deneme`;
+        listElement.appendChild(li);
+    });
+}
+
+// --- OYUN MANTIĞI VE DİL DESTEĞİ ---
+
 function updateUILanguage() {
     const data = translations[currentLang];
-
-    // HTML Elementlerini bul ve metinlerini değiştir
     document.getElementById('game-title').innerText = data.title;
     document.getElementById('search-input').placeholder = data.placeholder;
     document.getElementById('start-btn').innerText = data.start;
     document.getElementById('lang-toggle').innerText = data.langBtn;
-    
-    // İmzanı her ihtimale karşı güncelle [cite: 2026-02-01]
-    const footer = document.querySelector('.footer p') || document.getElementById('footer-text');
-    if (footer) footer.innerText = "Purpleguy © 2026 - tablet power";
 }
 
-// Dil değiştirme butonu fonksiyonu
-function changeLanguage() {
+window.changeLanguage = function() {
     currentLang = currentLang === 'tr' ? 'en' : 'tr';
     updateUILanguage();
-    
-    // Dil değişince sonucu temizle (karışıklık olmasın)
-    const nameResult = document.getElementById('item-name-result');
-    if (nameResult) nameResult.innerText = "";
-}
+};
 
-// EŞYA KONTROLÜ VE SPRITE GÖSTERİMİ
-function checkGuess() {
+window.checkGuess = function() {
     const inputField = document.getElementById('search-input');
     const userGuess = inputField.value.trim().toLowerCase();
-    const displayDiv = document.getElementById('item-display');
-    const nameResult = document.getElementById('item-name-result');
-    
-    // Hangi eşyayı arıyoruz? (Burayı oyun mantığına göre değiştirebilirsin)
     const targetKey = "diamond_sword"; 
-    
-    // translations.js içindeki o dile ait doğru ismi çek
-    const correctLocalizedName = translations[currentLang].items[targetKey].toLowerCase();
+    const correctName = translations[currentLang].items[targetKey].toLowerCase();
 
-    if (userGuess === "") return;
-
-    if (userGuess === correctLocalizedName) {
-        // DOĞRU BİLDİĞİNDE: Sprite'ı göster
+    if (userGuess === correctName) {
+        const displayDiv = document.getElementById('item-display');
         displayDiv.style.display = "block";
-        displayDiv.className = "item-icon"; // Temizle
-        displayDiv.classList.add(`sprite-${targetKey}`); // CSS'teki koordinatı ekle
+        displayDiv.className = `item-icon sprite-${targetKey}`;
+        document.getElementById('item-name-result').innerText = translations[currentLang].success;
         
-        nameResult.innerText = translations[currentLang].success;
-        nameResult.style.color = "#55FF55"; // Yeşil
+        // Rekoru kaydet (Şimdilik test için isim 'Efe' gidiyor)
+        saveScore("Efe", 1); 
     } else {
-        // YANLIŞ BİLDİĞİNDE
-        displayDiv.style.display = "none";
-        nameResult.innerText = translations[currentLang].error;
-        nameResult.style.color = "#FF5555"; // Kırmızı
+        document.getElementById('item-name-result').innerText = translations[currentLang].error;
     }
-}
+};
 
-// Event Listener'lar
+// Başlangıç Ayarları
 document.addEventListener('DOMContentLoaded', () => {
-    // Sayfa açılır açılmaz siyah arka planı ve dili ayarla [cite: 2026-01-27]
-    document.body.style.backgroundColor = "black"; 
+    document.body.style.backgroundColor = "black"; [cite: 2026-01-27]
     updateUILanguage();
-
-    // Buton tıklama olayı
-    const startBtn = document.getElementById('start-btn');
-    if (startBtn) {
-        startBtn.addEventListener('click', checkGuess);
-    }
-
-    // Enter tuşu ile kontrol etme kolaylığı
-    const inputField = document.getElementById('search-input');
-    if (inputField) {
-        inputField.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') checkGuess();
-        });
-    }
+    loadLeaderboard();
 });
+
