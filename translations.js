@@ -1,21 +1,18 @@
-// Varsayılan dil 🇹🇷
 let currentLang = 'tr'; 
 
 const translations = {
     tr: {
         title: "MC CRAFTLE 🎮",
         start: "BAŞLA 🔥",
-        placeholder: "Eşya ismi girin... 🔍",
+        placeholder: "Eşya ismi...",
         langBtn: "English 🇺🇸",
         success: "Tebrikler! Doğru eşyayı buldun. 🏆",
-        error: "Maalesef yanlış eşya, tekrar dene! ❌",
+        error: "Yanlış eşya! ❌",
         items: {
             "diamond_sword": "Elmas Kılıç ⚔️",
             "diamond": "Elmas 💎",
-            "stick": "Çubuk 🥢",
+            "iron_boots": "Demir Bot 👟",
             "apple": "Elma 🍎",
-            "iron_ingot": "Demir Külçesi 🧱",
-            "gold_ingot": "Altın Külçesi 🟡",
             "pickaxe": "Kazma ⛏️",
             "crafting_table": "Çalışma Masası 📦"
         }
@@ -23,17 +20,15 @@ const translations = {
     en: {
         title: "MC CRAFTLE 🎮",
         start: "START 🔥",
-        placeholder: "Enter item name... 🔍",
+        placeholder: "Item name...",
         langBtn: "Türkçe 🇹🇷",
-        success: "Congratulations! You found it. 🏆",
-        error: "Wrong item, try again! ❌",
+        success: "Congratulations! 🏆",
+        error: "Wrong item! ❌",
         items: {
             "diamond_sword": "Diamond Sword ⚔️",
             "diamond": "Diamond 💎",
-            "stick": "Stick 🥢",
+            "iron_boots": "Iron Boots 👟",
             "apple": "Apple 🍎",
-            "iron_ingot": "Iron Ingot 🧱",
-            "gold_ingot": "Gold Ingot 🟡",
             "pickaxe": "Pickaxe ⛏️",
             "crafting_table": "Crafting Table 📦"
         }
