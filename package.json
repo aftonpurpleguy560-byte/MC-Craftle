@@ -1,9 +1,11 @@
 {
   "name": "mc-craftle-purpleguy",
   "version": "1.0.0",
+  "description": "Minecraft Crafting Wordle Game",
+  "main": "index.html",
   "scripts": {
     "start": "serve .",
-    "build": "echo 'Done'"
+    "build": "echo 'No build needed'"
   },
   "dependencies": {
     "serve": "^14.2.0"
