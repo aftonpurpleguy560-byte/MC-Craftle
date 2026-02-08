@@ -1,104 +1,63 @@
-/* Genel Sayfa Ayarları */
+/* Arka plan isteğin: Daima siyah 🌑 [cite: 2026-01-27] */
 body {
-    background-color: black; /* Arka plan her zaman siyah [cite: 2026-01-27] */
+    background-color: black;
     color: white;
-    font-family: 'Courier New', Courier, monospace; /* Minecraft havası için */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     min-height: 100vh;
     text-align: center;
 }
 
-/* Konteynır Yapısı */
 #game-container {
-    width: 90%;
     max-width: 500px;
+    width: 90%;
     padding: 20px;
 }
 
-/* Başlık */
-#game-title {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px #3f3f3f;
+/* Emojilerin Dev Gibi Parlaması ✨ */
+#item-display {
+    font-size: 80px;
+    margin: 20px 0;
+    min-height: 100px;
 }
 
-/* Dil Butonu */
-.lang-wrapper {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
-
-#lang-toggle {
-    background-color: #3c3c3c;
-    color: white;
-    border: 2px solid white;
-    padding: 5px 15px;
-    cursor: pointer;
-}
-
-/* Giriş Alanı */
-.input-section {
-    margin-bottom: 30px;
-}
-
-#search-input {
+.input-section input {
     padding: 10px;
-    width: 200px;
-    border: 2px solid #3c3c3c;
-    background: #1e1e1e;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background: #222;
     color: white;
+    width: 70%;
 }
 
-#start-btn {
+.input-section button {
     padding: 10px 20px;
-    background-color: #3c3c3c;
+    background-color: #388E3C;
     color: white;
-    border: 2px solid white;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    font-weight: bold;
 }
 
-#start-btn:hover {
-    background-color: white;
-    color: black;
+/* Dünya Rekoru Listesi 🏆 */
+#leaderboard {
+    margin-top: 40px;
+    border-top: 1px solid #333;
+    padding-top: 20px;
 }
 
-/* --- SPRITE SİHRİ BURADA --- */
-
-/* Eşya İkon Temeli */
-.item-icon {
-    width: 32px;
-    height: 32px;
-    background-image: url('items.png'); /* items.png dosyanın adıyla aynı olmalı */
-    background-repeat: no-repeat;
-    image-rendering: pixelated; /* Pikseller net görünsün */
-    margin: 20px auto;
+#scores-list {
+    list-style: none;
+    padding: 0;
+    color: #FFD700; /* Altın Rengi */
 }
 
-/* Eşya Koordinatları (Her eşya 32px genişliğinde yan yana dizili varsayılmıştır) */
-/* Eğer resmin farklıysa bu -32px değerlerini arttırarak bulabilirsin */
-.sprite-diamond       { background-position: 0px 0px; }
-.sprite-stick         { background-position: -32px 0px; }
-.sprite-diamond_sword { background-position: -64px 0px; }
-.sprite-apple         { background-position: -96px 0px; }
-.sprite-iron_ingot    { background-position: -128px 0px; }
-
-/* Sonuç Metni */
-#item-name-result {
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-top: 10px;
-}
-
-/* Footer [cite: 2026-02-01] */
+/* Footer İmza [cite: 2026-02-01] */
 .footer {
-    margin-top: 50px;
-    font-size: 0.8rem;
-    opacity: 0.7;
+    margin-top: 30px;
+    font-size: 12px;
+    color: #666;
 }
-
